@@ -1,7 +1,5 @@
 public class Main{
     public static void main(String[] args){
-
+        Select select = new Select();
     }
-}inanana
-
-hi anna hi ina hi friends
+}
