@@ -278,11 +278,15 @@ public class Decimal implements ActionListener{
             str_mantissa = str_builder2.toString();
         }
 
+        else {
+            button2.setEnabled(true);
+        }
+
         System.out.println(str_mantissa);
         System.out.println(str_exponent);
 
         if(e.getSource()== button2){
-            //WriteToFile write = new WriteToFile();
+            WriteToFile write = new WriteToFile(str_mantissa, str_exponent);
             
             if(str_mantissa.length()!= 0 && str_exponent.length() != 0 ){
                 System.out.println("FILE");
@@ -307,5 +311,7 @@ public class Decimal implements ActionListener{
 
         frame_invalid.setSize(100, 100);
         frame_invalid.setVisible(true);
+
+        button2.setEnabled(false);
     }
 }

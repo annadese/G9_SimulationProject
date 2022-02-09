@@ -91,7 +91,7 @@ public class Binary implements ActionListener{
         button2 = new JButton("Paste result in Notepad");
         button2.setBounds(100,305,200,40);
         button2.setFocusCycleRoot(false);
-        button2.setEnabled(false);;
+        button2.setEnabled(false);
         button2.addActionListener(this);
         frame.add(button2);
 
@@ -338,6 +338,8 @@ public class Binary implements ActionListener{
 
         frame_invalid.setSize(100, 100);
         frame_invalid.setVisible(true);
+
+        button2.setEnabled(false);
     }
 
 }
