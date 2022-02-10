@@ -18,7 +18,8 @@ public class Decimal implements ActionListener{
     JLabel out_binary = new JLabel("");
     JLabel out_hex = new JLabel("");
 
-    //String str_mantissa="";
+    String str_binary="";
+    String str_hex="";
 
     Decimal(){
         check_inputs();
@@ -350,7 +351,7 @@ public class Decimal implements ActionListener{
 
         if(e.getSource()== button2){
             if(str_mantissa.length()!= 0 && str_exponent.length() != 0 ){
-                WriteToFile write = new WriteToFile(str_mantissa, str_exponent);
+                WriteToFile write = new WriteToFile(str_binary, str_hex);
                 System.out.println("FILE");
             }
             
@@ -359,7 +360,7 @@ public class Decimal implements ActionListener{
         if(e.getSource() == button3){
 
             if(str_mantissa.length()!= 0 && str_exponent.length() != 0 ){
-                StringSelection selection = new StringSelection(str_mantissa);
+                StringSelection selection = new StringSelection(str_binary + "\n" + str_hex);
                 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
                 clipboard.setContents(selection, null);
 
@@ -382,6 +383,9 @@ public class Decimal implements ActionListener{
 
             out_binary.setText(cm.getBinaryOutput());
             out_hex.setText(cm.getHexOutput());
+
+            str_binary = cm.getBinaryOutput();
+            str_hex = cm.getHexOutput();
 
             button2.setEnabled(true);
             button3.setEnabled(true);
