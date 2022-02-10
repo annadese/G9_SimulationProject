@@ -223,6 +223,7 @@ public class Binary implements ActionListener{
 
             if (count > 1){
                 tf_mantissa.setText(null);
+                tf_exponent.setText(null);
                 System.out.println("ERROR1");
                 count = 0;
 
@@ -231,6 +232,7 @@ public class Binary implements ActionListener{
 
             else if (count2 == 0) {
                 tf_mantissa.setText(null);
+                tf_exponent.setText(null);
                 System.out.println("ERROR2");
 
                 frame_invalid();
@@ -238,6 +240,7 @@ public class Binary implements ActionListener{
 
             else if (count3 > 1){
                 tf_mantissa.setText(null);
+                tf_exponent.setText(null);
                 System.out.println("ERROR3");
                 count3 = 0;
 
@@ -246,6 +249,7 @@ public class Binary implements ActionListener{
 
             else if(count3==1 && str_mantissa.charAt(0)!='-'){
                 tf_mantissa.setText(null);
+                tf_exponent.setText(null);
                 System.out.println("ERROR4");
                 count3 = 0;
 
@@ -259,6 +263,7 @@ public class Binary implements ActionListener{
 
             else if(count4 == 0){
                 tf_exponent.setText(null);
+                tf_mantissa.setText(null);
                 System.out.println("ERROR5");
                 count4=0;
 
@@ -267,6 +272,7 @@ public class Binary implements ActionListener{
 
             else if (count5 > 1){
                 tf_exponent.setText(null);
+                tf_mantissa.setText(null);
                 System.out.println("ERROR6");
                 count5 = 0;
 
@@ -275,6 +281,7 @@ public class Binary implements ActionListener{
 
             else if(count5==1 && str_exponent.charAt(0)!='-'){
                 tf_exponent.setText(null);
+                tf_mantissa.setText(null);
                 System.out.println("ERROR7");
                 count5 = 0;
 

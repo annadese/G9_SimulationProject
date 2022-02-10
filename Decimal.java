@@ -5,7 +5,7 @@ import java.io.*;
 
 public class Decimal implements ActionListener{
 
-    private int count = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0 ;
+    private int count = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0;
     JTextField tf_mantissa = new JTextField(20);
     JTextField tf_exponent = new JTextField(20);
     
@@ -172,6 +172,7 @@ public class Decimal implements ActionListener{
         count3 = 0;
         count4 = 0;
         count5 = 0;
+        count6 = 0;
 
         for (int i = 0; i < str_mantissa.length(); i++) {
             if (str_mantissa.charAt(i) == '.') {
@@ -179,8 +180,8 @@ public class Decimal implements ActionListener{
             }
         }
 
-        for (int i = 0; i < str_exponent.length(); i++) {
-            if (str_exponent.charAt(i) >= '0' && str_exponent.charAt(i) <= '9') {
+        for (int i = 0; i < str_mantissa.length(); i++) {
+            if (str_mantissa.charAt(i) >= '0' && str_mantissa.charAt(i) <= '9') {
                 count2++;
             }
         }
@@ -203,11 +204,21 @@ public class Decimal implements ActionListener{
             }
         }
 
+        /*
+        for (int i = 0; i < str_mantissa.length(); i++) {
+            if (str_mantissa.charAt(i) >= '0' && str_mantissa.charAt(i) <= '9') {
+                count6++;
+            }
+        }
+        */
+
+
 
         // check for invalid mantissa inputs
 
         if (count > 1){
             tf_mantissa.setText(null);
+            tf_exponent.setText(null);
             System.out.println("ERROR1");
             count = 0;
 
@@ -216,6 +227,7 @@ public class Decimal implements ActionListener{
 
         else if (count2 == 0) {
             tf_mantissa.setText(null);
+            tf_exponent.setText(null);
             System.out.println("ERROR2");
             count2 = 0;
 
@@ -224,6 +236,7 @@ public class Decimal implements ActionListener{
 
         else if (count3 > 1){
             tf_mantissa.setText(null);
+            tf_exponent.setText(null);
             System.out.println("ERROR3");
             count3 = 0;
 
@@ -232,17 +245,18 @@ public class Decimal implements ActionListener{
 
         else if(count3==1 && str_mantissa.charAt(0)!='-'){
             tf_mantissa.setText(null);
+            tf_exponent.setText(null);
             System.out.println("ERROR4");
             count3 = 0;
 
             frame_invalid();
         }
 
-
         // check for invalid exponent inputs
 
         else if(count4 == 0){
             tf_exponent.setText(null);
+            tf_mantissa.setText(null);
             System.out.println("ERROR5");
             count4=0;
 
@@ -251,6 +265,7 @@ public class Decimal implements ActionListener{
 
         else if (count5 > 1){
             tf_exponent.setText(null);
+            tf_mantissa.setText(null);
             System.out.println("ERROR6");
             count5 = 0;
 
@@ -259,11 +274,13 @@ public class Decimal implements ActionListener{
 
         else if(count5==1 && str_exponent.charAt(0)!='-'){
             tf_exponent.setText(null);
+            tf_mantissa.setText(null);
             System.out.println("ERROR7");
             count5 = 0;
 
             frame_invalid();
         }
+
 
         // valid mantissa, add zero
 
