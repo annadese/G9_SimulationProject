@@ -143,6 +143,13 @@ public class Converter{
                 }
             }
         }
+		
+		// sets the trailing 0's to reach 16 bits
+		for(int i = 0; i < 16; i++){
+            if(i >= finalHexVal.length()){
+                finalHexVal = finalHexVal + "0";
+            }
+        }
 
         setHexOutput(finalHexVal);
     }
