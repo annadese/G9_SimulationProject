@@ -14,6 +14,9 @@ public class Binary implements ActionListener{
     JButton button1 = new JButton("");
     JButton button2 = new JButton("");
     JButton button3 = new JButton("");
+	
+	JLabel out_binary = new JLabel("");
+    JLabel out_hex = new JLabel("");
 
     Binary(){
         check_inputs();
@@ -58,7 +61,7 @@ public class Binary implements ActionListener{
         label6.setBounds(65,240,80,25);
         frame.add(label6);
 
-        JLabel out_binary = new JLabel("0 010011000111 110");
+        out_binary = new JLabel("0 010011000111 110");
         out_binary.setBounds(170,240,1000,25);
         frame.add(out_binary);
         
@@ -66,7 +69,7 @@ public class Binary implements ActionListener{
         label7.setBounds(65,260,80,25);
         frame.add(label7);
 
-        JLabel out_hex = new JLabel("0000 0000 0000 0000");
+        out_hex = new JLabel("0000 0000 0000 0000");
         out_hex.setBounds(170,260,500,25);
         frame.add(out_hex);
 
@@ -314,7 +317,18 @@ public class Binary implements ActionListener{
             }
 
             else {
+				int expInput = -5; // to be deleted
+                Boolean signMantissa = true; // to be deleted
+                int[] mantissa = {1, 0, 1, 1, 1, 0, 1, 0}; // to be deleted
 
+                Converter cm = new Converter(mantissa, expInput, signMantissa);
+                
+                System.out.println(cm.getBinaryOutput()); // to be deleted
+                System.out.println(cm.getHexOutput()); // to be deleted
+
+                out_binary.setText(cm.getBinaryOutput());
+                out_hex.setText(cm.getHexOutput());
+				
                 button2.setEnabled(true);
                 button3.setEnabled(true);
             }
