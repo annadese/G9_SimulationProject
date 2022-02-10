@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import javax.swing.*;
 import java.awt.event.*; 
 import java.io.*;
@@ -312,28 +314,34 @@ public class Binary implements ActionListener{
             }
 
             else {
+
                 button2.setEnabled(true);
+                button3.setEnabled(true);
             }
 
             System.out.println(str_mantissa);
             System.out.println(str_exponent);
 
             if(e.getSource()== button2){
-                WriteToFile write = new WriteToFile(str_mantissa, str_exponent);
-                
                 if(str_mantissa.length()!= 0 && str_exponent.length() != 0 ){
+                    WriteToFile write = new WriteToFile(str_mantissa, str_exponent);
                     System.out.println("FILE");
                 }
+                
+            }
+
+            if(e.getSource() == button3){
+
+                if(str_mantissa.length()!= 0 && str_exponent.length() != 0 ){
+                    StringSelection selection = new StringSelection(str_mantissa);
+                    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                    clipboard.setContents(selection, null);
+
+                    System.out.println("COPIED");
+                }
+                
             }
         //}
-
-        
-        
-
-        
-
-        
-        
         
     }
 
@@ -348,13 +356,14 @@ public class Binary implements ActionListener{
         frame_invalid.setLocationRelativeTo(null);
 
         JLabel label_invalid = new JLabel("INVALID INPUT");
-        label_invalid.setBounds(20,20,80,25);
+        label_invalid.setBounds(20,20,100,25);
         frame_invalid.add(label_invalid);
 
         frame_invalid.setSize(100, 100);
         frame_invalid.setVisible(true);
 
         button2.setEnabled(false);
+        button3.setEnabled(false);
     }
 
 }

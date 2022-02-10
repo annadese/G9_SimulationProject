@@ -11,8 +11,8 @@ public class Select implements ActionListener {
     JFrame frame = new JFrame();
     JLabel label = new JLabel();
     JLabel label2 = new JLabel();
-    JButton button1 = new JButton("Binary Mantissa w/ Base-2");
-    JButton button2 = new JButton("Decimal Mantissa w/ Base-10");
+    JButton button1 = new JButton("Binary w/ Base-2");
+    JButton button2 = new JButton("Decimal w/ Base-10");
     JButton button3 = new JButton("NaN");
 
     Select(){
@@ -26,15 +26,15 @@ public class Select implements ActionListener {
         label2 = new JLabel("the following buttons below.");
         label2.setBounds(120,55,200,50);
 
-        button1.setBounds(100,120,200,40);
+        button1.setBounds(112,120,170,40);
         button1.setFocusCycleRoot(false);
         button1.addActionListener(this);
 
-        button2.setBounds(100, 200, 200, 40);
+        button2.setBounds(112, 200, 170, 40);
         button2.setFocusCycleRoot(false);
         button2.addActionListener(this);
 
-        button3.setBounds(100, 280, 200, 40);
+        button3.setBounds(112, 280, 170, 40);
         button3.setFocusCycleRoot(false);
         button3.addActionListener(this);
 

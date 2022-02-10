@@ -1,11 +1,13 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*; 
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.io.*;
 
 public class Decimal implements ActionListener{
 
-    private int count = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0;
+    private int count = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0;
     JTextField tf_mantissa = new JTextField(20);
     JTextField tf_exponent = new JTextField(20);
     
@@ -172,7 +174,6 @@ public class Decimal implements ActionListener{
         count3 = 0;
         count4 = 0;
         count5 = 0;
-        count6 = 0;
 
         for (int i = 0; i < str_mantissa.length(); i++) {
             if (str_mantissa.charAt(i) == '.') {
@@ -311,11 +312,23 @@ public class Decimal implements ActionListener{
         System.out.println(str_exponent);
 
         if(e.getSource()== button2){
-            WriteToFile write = new WriteToFile(str_mantissa, str_exponent);
-            
             if(str_mantissa.length()!= 0 && str_exponent.length() != 0 ){
+                WriteToFile write = new WriteToFile(str_mantissa, str_exponent);
                 System.out.println("FILE");
             }
+            
+        }
+
+        if(e.getSource() == button3){
+
+            if(str_mantissa.length()!= 0 && str_exponent.length() != 0 ){
+                StringSelection selection = new StringSelection(str_mantissa);
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                clipboard.setContents(selection, null);
+
+                System.out.println("COPIED");
+            }
+            
         }
         
     }
@@ -331,12 +344,13 @@ public class Decimal implements ActionListener{
         frame_invalid.setLocationRelativeTo(null);
 
         JLabel label_invalid = new JLabel("INVALID INPUT");
-        label_invalid.setBounds(20,20,80,25);
+        label_invalid.setBounds(20,20,100,25);
         frame_invalid.add(label_invalid);
 
         frame_invalid.setSize(100, 100);
         frame_invalid.setVisible(true);
 
         button2.setEnabled(false);
+        button3.setEnabled(false);
     }
 }
