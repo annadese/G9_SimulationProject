@@ -11,6 +11,7 @@ public class Decimal implements ActionListener{
     
     JButton button1 = new JButton("");
     JButton button2 = new JButton("");
+    JButton button3 = new JButton("");
 
     Decimal(){
         check_inputs();
@@ -86,11 +87,18 @@ public class Decimal implements ActionListener{
         button1.addActionListener(this);
         panel.add(button1);
 
-        button2 = new JButton("Paste result in Notepad");
-        button2.setBounds(100,305,200,40);
+        button2 = new JButton("Write result to Notepad");
+        button2.setBounds(160,305,190,40);
         button2.addActionListener(this);
         button2.setEnabled(false);
         panel.add(button2);
+
+        button3 = new JButton("Copy");
+        button3.setBounds(60,305,80,40);
+        button3.setFocusCycleRoot(false);
+        button3.setEnabled(false);
+        button3.addActionListener(this);
+        panel.add(button3);
 
         tf_mantissa.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent ke) {
