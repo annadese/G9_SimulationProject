@@ -7,7 +7,7 @@ import java.io.*;
 
 public class Binary implements ActionListener{
 
-    private int count = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0 ;
+    private int count = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0;
     JTextField tf_mantissa = new JTextField(20);
     JTextField tf_exponent = new JTextField(20);
 
@@ -58,19 +58,19 @@ public class Binary implements ActionListener{
         frame.add(label5);
 
         JLabel label6 = new JLabel("Binary");
-        label6.setBounds(65,240,80,25);
+        label6.setBounds(60,240,80,25);
         frame.add(label6);
 
-        out_binary = new JLabel("0 010011000111 110");
-        out_binary.setBounds(170,240,1000,25);
+        out_binary = new JLabel("");
+        out_binary.setBounds(165,240,1000,25);
         frame.add(out_binary);
         
         JLabel label7 = new JLabel("Hexadecimal");
-        label7.setBounds(65,260,80,25);
+        label7.setBounds(60,260,80,25);
         frame.add(label7);
 
-        out_hex = new JLabel("0000 0000 0000 0000");
-        out_hex.setBounds(170,260,500,25);
+        out_hex = new JLabel("");
+        out_hex.setBounds(165,260,500,25);
         frame.add(out_hex);
 
         JLabel error_mantissa = new JLabel("");
@@ -189,6 +189,7 @@ public class Binary implements ActionListener{
             count3 = 0;
             count4 = 0;
             count5 = 0;
+            count6 = 0;
 
             for (int i = 0; i < str_mantissa.length(); i++) {
                 if (str_mantissa.charAt(i) == '.') {
@@ -220,6 +221,12 @@ public class Binary implements ActionListener{
             for (int i = 0; i < str_exponent.length(); i++) {
                 if (str_exponent.charAt(i) == '-') {
                     count5++;
+                }
+            }
+
+            for (int i = 0; i < str_mantissa.length(); i++) {
+                if (str_mantissa.charAt(i) == '1') {
+                    count6++;
                 }
             }
 
@@ -261,9 +268,6 @@ public class Binary implements ActionListener{
                 frame_invalid();
             }
 
-            
-
-
             // check for invalid exponent inputs
 
             else if(count4 == 0){
@@ -295,42 +299,50 @@ public class Binary implements ActionListener{
 
             // valid mantissa, add zero
 
+            else if(count6==0){
+
+                str_mantissa = "0";
+                temp();
+            }
+ 
             else if(count==1 && str_mantissa.charAt(0)=='.'){
-                count=0;
-
+                //count=0;
+    
+                System.out.println("after occ call "+remove_leadingzeroes(str_mantissa));
+                str_mantissa = remove_leadingzeroes(str_mantissa);
+    
                 StringBuilder str_builder = new StringBuilder(str_mantissa);
-
                 str_builder.insert(0, '0');
-
+    
                 str_mantissa = str_builder.toString();
-
+    
+                temp();
+    
             }
-
+    
             else if(count==1 && str_mantissa.charAt(str_mantissa.length()-1)=='.'){
-                count=0;
-            
+    
+                System.out.println("after occ call "+remove_leadingzeroes(str_mantissa));
+                str_mantissa = remove_leadingzeroes(str_mantissa);
+    
+      
                 StringBuilder str_builder2 = new StringBuilder();
-
+                //StringBuilder str_builder2 = new StringBuilder(str_mantissa);
+                //str_builder2.deleteCharAt(str_mantissa.length()-1);
                 str_builder2.append(str_mantissa).append('0');
-
                 str_mantissa = str_builder2.toString();
-            }
-
-            else {
-				int expInput = -5; // to be deleted
-                Boolean signMantissa = true; // to be deleted
-                int[] mantissa = {1, 0, 1, 1, 1, 0, 1, 0}; // to be deleted
-
-                Converter cm = new Converter(mantissa, expInput, signMantissa);
+    
                 
-                System.out.println(cm.getBinaryOutput()); // to be deleted
-                System.out.println(cm.getHexOutput()); // to be deleted
-
-                out_binary.setText(cm.getBinaryOutput());
-                out_hex.setText(cm.getHexOutput());
-				
-                button2.setEnabled(true);
-                button3.setEnabled(true);
+                temp();
+            }
+    
+            else {
+    
+                System.out.println("after occ call "+ remove_leadingzeroes(str_mantissa));
+                str_mantissa = remove_leadingzeroes(str_mantissa);
+    
+                temp();
+                
             }
 
             System.out.println(str_mantissa);
@@ -359,8 +371,64 @@ public class Binary implements ActionListener{
         
     }
 
-    public void check_occurrences(){
+    public void temp(){
+        int expInput = -5; // to be deleted
+        Boolean signMantissa = true; // to be deleted
+        int[] mantissa = {1, 0, 1, 1, 1, 0, 1, 0}; // to be deleted
 
+        Converter cm = new Converter(mantissa, expInput, signMantissa);
+        
+        System.out.println(cm.getBinaryOutput()); // to be deleted
+        System.out.println(cm.getHexOutput()); // to be deleted
+
+        out_binary.setText(cm.getBinaryOutput());
+        out_hex.setText(cm.getHexOutput());
+
+        button2.setEnabled(true);
+        button3.setEnabled(true);
+    }
+
+    public String remove_leadingzeroes(String str){
+        int i = 0; 
+        int j = 0; 
+        int k = 0;
+
+        while (str.charAt(i) == '0') {
+            i++; 
+        }
+            
+        while (str.charAt(j) == '0' && str.charAt(j) != '.') {
+            
+            if(j < str.length()-1 ){
+               if(str.charAt(j+1)== '1'){
+                    k++;
+                }     
+            }
+
+            j++;
+        }
+
+        // remove trailing 0s
+
+        StringBuffer sb = new StringBuffer(str); 
+
+        if (i > 0 && count == 0){
+            sb.replace(0, i, ""); 
+            System.out.println("VALID1");
+        }
+
+        else if(count == 1 && i > 0 && k == 0){
+            sb.replace(1, i, ""); 
+            System.out.println("VALID2");
+        }
+
+        else if (i > 0 && count == 1){
+            sb.replace(0, i, ""); 
+            System.out.println("VALID3");
+        }
+
+
+        return str = sb.toString();
     }
 
     public void frame_invalid(){
@@ -378,6 +446,9 @@ public class Binary implements ActionListener{
 
         button2.setEnabled(false);
         button3.setEnabled(false);
+
+        out_binary.setText("");
+        out_hex.setText("");
     }
 
 }
