@@ -8,7 +8,7 @@ public class Converter{
     }
 
     public void convertToBinary64(int[] mantissa, int expInput, Boolean signMantissa){
-        int[] binaryOutput = new int[28];
+        int[] binaryOutput = new int[64];
         int[] midBinary = new int[11];
         int i = 0, x = 0;
 
@@ -35,7 +35,7 @@ public class Converter{
         }
 
         // ensures that the binary has a total of 28 bits
-        while(i < 28){
+        while(i < 64){
             binaryOutput[i] = 0;
             i++;
         }
