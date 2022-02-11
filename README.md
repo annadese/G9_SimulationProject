@@ -26,3 +26,5 @@ MANDADERO, Clarissa Mae S.
 	b. 4
 	c. 0
 5. Click the "Convert" button, and the output will be shown at the bottom part of the window.
+6. If you want to copy the output to your clipboard, click the "Copy" button.
+7. If you want to save the output to a .txt file, click "Write result to Notepad" and the .txt file will be saved in the same folder where the .jar file is intalled and is named "bin64converter".
