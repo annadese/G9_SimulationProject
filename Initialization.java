@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class InitTest {
+public class Initialization {
 
     int exponent;
     String mantissa;
@@ -8,9 +8,9 @@ public class InitTest {
     String fraction;
     boolean onlyZero;   // if whole part is 0 only
     boolean bFraction = false;
-    String ans;
+    int[] ans = new int[64];
 
-    InitTest (String sMantissa, String sExponent, int base) {
+    Initialization (String sMantissa, String sExponent, int base) {
         this.mantissa = sMantissa;
         this.exponent = Integer.parseInt(sExponent);
         this.onlyZero = false;
@@ -46,7 +46,7 @@ public class InitTest {
 
         boolean norm = isNormalized();
         if (!norm) {
-            ans = Arrays.toString(normalize());
+            ans = normalize();
         }
     }
 
@@ -203,11 +203,11 @@ public class InitTest {
         return strFinal;
     }
 
-    public static void main(String[] args){
-        String man = "8.0";
-        String exp = "5";
-        int base = 10;
+    public int[] getAns() {
+        return this.ans;
+    }
 
-        InitTest init = new InitTest(man, exp, base);
+    public int getExp() {
+        return this.exponent;
     }
 }
