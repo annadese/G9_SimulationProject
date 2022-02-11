@@ -153,8 +153,10 @@ public class Initialization {
             char c = mantissa.charAt(j);
 
             if(c != '.') {
-                array[z] = Integer.parseInt(String.valueOf(c));
-                z++;
+                if (c == '1' || c == '0') {
+                    array[z] = Integer.parseInt(String.valueOf(c));
+                    z++;
+                }
             }
             
         }
@@ -274,7 +276,7 @@ public class Initialization {
 
         //decimal is converted to binary
         int i = 0;
-        while(dDecimal > 0 && i < 20){
+        while(dDecimal > 0 && i < 52){
             dDecimal *= 2.0;
             nBinary = dDecimal.intValue();
             strBinary = strBinary + nBinary;
