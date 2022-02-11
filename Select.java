@@ -13,7 +13,6 @@ public class Select implements ActionListener {
     JLabel label2 = new JLabel();
     JButton button1 = new JButton("Binary w/ Base-2");
     JButton button2 = new JButton("Decimal w/ Base-10");
-    JButton button3 = new JButton("NaN");
 
     Select(){
         frame.pack();
@@ -30,24 +29,18 @@ public class Select implements ActionListener {
         button1.setFocusCycleRoot(false);
         button1.addActionListener(this);
 
-        button2.setBounds(112, 200, 170, 40);
+        button2.setBounds(112, 190, 170, 40);
         button2.setFocusCycleRoot(false);
         button2.addActionListener(this);
-
-        button3.setBounds(112, 280, 170, 40);
-        button3.setFocusCycleRoot(false);
-        button3.addActionListener(this);
-
         
 
         frame.add(label);
         frame.add(label2);
         frame.add(button1);
         frame.add(button2);
-        frame.add(button3);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(420, 420);
+        frame.setSize(420, 330);
         frame.setLayout(null);
         frame.setVisible(true);
     }
