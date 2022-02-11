@@ -8,7 +8,7 @@ public class Initialization {
     String fraction;
     boolean onlyZero;   // if whole part is 0 only
     boolean bFraction = false;
-    int[] ans = new int[64];
+    int[] ans;
 
     Initialization (String sMantissa, String sExponent, int base) {
         this.mantissa = sMantissa;
@@ -48,6 +48,8 @@ public class Initialization {
         if (!norm) {
             ans = normalize();
         }
+
+        System.out.println(ans);
     }
 
 
@@ -204,10 +206,10 @@ public class Initialization {
     }
 
     public int[] getAns() {
-        return this.ans;
+        return ans;
     }
 
     public int getExp() {
-        return this.exponent;
+        return exponent;
     }
 }
