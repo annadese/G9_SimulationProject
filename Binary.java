@@ -401,6 +401,23 @@ public class Binary implements ActionListener{
         int i = 0; 
         int j = 0; 
         int k = 0;
+        int n = 1;
+        int m = 1;
+
+        while (str.charAt(i) == '0') {
+            i++; 
+        }
+
+        if(count3 == 1){
+
+            while (str.charAt(m) == '0') {
+                m++; 
+            }
+
+            while (str.charAt(n) == '0') {
+                n++; 
+            }
+        }
 
         while (str.charAt(i) == '0') {
             i++; 
@@ -434,6 +451,11 @@ public class Binary implements ActionListener{
         else if (i > 0 && count == 1){
             sb.replace(0, i, ""); 
             System.out.println("VALID3");
+        }
+
+        else if (n > 1){
+            sb.replace(1, m, ""); 
+            System.out.println("VALID4");
         }
 
 
