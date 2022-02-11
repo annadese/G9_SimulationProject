@@ -21,6 +21,9 @@ public class Decimal implements ActionListener{
     String str_binary="";
     String str_hex="";
 
+    String str_mantissa="";
+    String str_exponent="";
+
     Decimal(){
         check_inputs();
     }
@@ -170,9 +173,9 @@ public class Decimal implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        String str_mantissa = tf_mantissa.getText();
+        str_mantissa = tf_mantissa.getText();
 
-        String str_exponent = tf_exponent.getText();
+        str_exponent = tf_exponent.getText();
 
         count = 0;
         count2 = 0;
