@@ -21,6 +21,9 @@ public class Binary implements ActionListener{
     String str_binary="";
     String str_hex="";
 
+    String str_mantissa="";
+    String str_exponent="";
+
     Binary(){
         check_inputs();
     }
@@ -181,10 +184,10 @@ public class Binary implements ActionListener{
     
         //if(e.getSource() == button1){
             
-            String str_mantissa = tf_mantissa.getText();
+            str_mantissa = tf_mantissa.getText();
             //System.out.println(str_mantissa);
 
-            String str_exponent = tf_exponent.getText();
+            str_exponent = tf_exponent.getText();
             //System.out.println(str_exponent);
 
             count = 0;
