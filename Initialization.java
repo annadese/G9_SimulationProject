@@ -9,6 +9,7 @@ public class Initialization {
     boolean onlyZero;   // if whole part is 0 only
     boolean bFraction = false;
     int[] ans;
+    boolean signBit = true;
 
     Initialization (String sMantissa, String sExponent, int base) {
         this.mantissa = sMantissa;
@@ -17,6 +18,22 @@ public class Initialization {
         boolean check = false;
         char c;
         
+        if (mantissa.charAt(0) == '-') {
+            String temp = mantissa;
+            mantissa = "";
+            signBit = false;
+
+            for (int i = 1; i < temp.length(); i++) {
+                mantissa += temp.charAt(i);
+            }
+        }
+
+        mantissa = Double.toString(Double.parseDouble(mantissa));
+
+        if (base == 10) {
+            mantissa =  decimalToBinary(mantissa);
+        }
+
         for(int i = 0; i < mantissa.length(); i++) {
             c = mantissa.charAt(i);
 
@@ -24,8 +41,6 @@ public class Initialization {
                 check = true;
             }
         }
-
-        mantissa = Double.toString(Double.parseDouble(mantissa));
 
         if (check) {
             String[] splitMantissa = String.valueOf(mantissa).split("\\.");
@@ -35,23 +50,20 @@ public class Initialization {
             this.whole = mantissa;
         }
 
-        if (fraction.equals("0")) {
+        if ("0".equals(fraction)) {
             this.whole = mantissa;
             this.fraction = null;
         }
 
-        if (base == 10) {
-            mantissa =  decimalToBinary(mantissa);
-        }
+        mantissa = Double.toString(Double.parseDouble(mantissa));
 
         boolean norm = isNormalized();
         if (!norm) {
             ans = normalize();
+        } else {
+            ans = toIntArray();
         }
-
-        System.out.println(ans);
     }
-
 
     boolean isNormalized () {
         // if num has only 1 digit and is 1
@@ -72,14 +84,15 @@ public class Initialization {
     }
 
     int[] normalize () {
-        int[] array = new int[64];
+        int[] array = new int[40];
         int x = 0;
         int decimalPlace = 0;
         boolean found = false;
+        int i = 0;
         
         // if whole part is 0
         if (onlyZero == true) {
-            for (int i = 0; i < fraction.length(); i++) {
+            for (i = 0; i < fraction.length(); i++) {
                 char c = fraction.charAt(i);
     
                 if (c == '1' && !found) {
@@ -104,10 +117,68 @@ public class Initialization {
                     x++;
                 }
             }
+        }
+
+        int[] arrayFinal;
+        // removes trailing 0's
+        if(array[array.length-1] == 0) {
+            i = array.length - 1;
+
+            while (array[i] == 0) {
+                i--;
+            }
+
+            arrayFinal = new int[i+1];
+            int w = 0;
+            while (w <= i) {
+                arrayFinal[w] = array[w];
+                w++;
+            }
+        } else {
+            arrayFinal = new int[array.length - 1];
+            arrayFinal = array;
+        }
+        
+        return arrayFinal;
+    }
+
+    int[] toIntArray() {
+        int[] array = new int[40];
+        int i = 0;
+        int z = 0;
+
+        for (int j = 0; j < mantissa.length(); j++) {
+            char c = mantissa.charAt(j);
+
+            if(c != '.') {
+                array[z] = Integer.parseInt(String.valueOf(c));
+                z++;
+            }
             
         }
 
-        return array;
+        int[] arrayFinal;
+        // removes trailing 0's
+        if(array[array.length-1] == 0) {
+            //strFinal = "";
+            i = array.length - 1;
+
+            while (array[i] == 0) {
+                i--;
+            }
+
+            arrayFinal = new int[i+1];
+            int w = 0;
+            while (w <= i) {
+                arrayFinal[w] = array[w];
+                w++;
+            }
+        } else {
+            arrayFinal = new int[array.length - 1];
+            arrayFinal = array;
+        }
+        
+        return arrayFinal;
     }
 
     public String decimalToBinary(String str){
@@ -140,15 +211,22 @@ public class Initialization {
 
             //converts from decimal to binary
             int nDecimal = Integer.parseInt(strDecimalNum);
-            strDecimalNum = getBinaryFractionPart(nDecimal);
+            if(nDecimal > 0) {
+                strDecimalNum = getBinaryFractionPart(nDecimal);
+            }
             if(decimalPlace != 0) { //executes if a whole number exists
                 int nWhole = Integer.parseInt(strWholeNum);
                 strWholeNum = getBinaryWholeNum(nWhole);
             }
 
-            binaryFinal = strWholeNum + "." + strDecimalNum;
+            //checks if decimal is not equal to 0
+            if(strDecimalNum.charAt(strDecimalNum.length()-1) != '0') {
+                binaryFinal = strWholeNum + "." + strDecimalNum;
+            }
+            else{
+                binaryFinal = strWholeNum;
+            }
         }
-
         else{ //executes if given is a whole number
             strWholeNum = str;
             int nWhole = Integer.parseInt(strWholeNum);
@@ -202,6 +280,24 @@ public class Initialization {
             i++;
         }
 
+        strFinal = strBinary;
+
+        // removes trailing 0's
+        if(strBinary.charAt(strBinary.length()-1) == '0') {
+            strFinal = "";
+            i = strBinary.length() - 1;
+
+            while (strBinary.charAt(i) == '0') {
+                i--;
+            }
+
+            int x = 0;
+            while (x <= i) {
+                strFinal += strBinary.charAt(x);
+                x++;
+            }
+        }
+
         return strFinal;
     }
 
@@ -211,5 +307,9 @@ public class Initialization {
 
     public int getExp() {
         return exponent;
+    }
+
+    public boolean getSign() {
+        return signBit;
     }
 }
