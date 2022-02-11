@@ -375,11 +375,12 @@ public class Decimal implements ActionListener{
     }
 
     public void temp(){
-            int expInput = -5; // to be deleted
-            Boolean signMantissa = true; // to be deleted
-            int[] mantissa = {1, 0, 1, 1, 1, 0, 1, 0}; // to be deleted
+            //int expInput = -5; // to be deleted
+            //Boolean signMantissa = true; // to be deleted
+            //int[] mantissa = {1, 0, 1, 1, 1, 0, 1, 0}; // to be deleted
 
-            Converter cm = new Converter(mantissa, expInput, signMantissa);
+            Initialization init = new Initialization(str_mantissa, str_exponent, 10);
+            Converter cm = new Converter(init.getAns(), init.getExp(), init.getSign());
             
             System.out.println(cm.getBinaryOutput()); // to be deleted
             System.out.println(cm.getHexOutput()); // to be deleted

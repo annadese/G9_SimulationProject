@@ -37,13 +37,13 @@ public class Binary implements ActionListener{
         frame.setLocationRelativeTo(null);
         frame.setTitle("Binary Mantissa and Base-2");
         //frame.add(panel);
-        frame.setSize(420, 420);
+        frame.setSize(800, 450);
         frame.setLayout(null);
 
         //panel.setLayout(null);
 
         JLabel label = new JLabel("INPUT");
-        label.setBounds(180,20,80,25);
+        label.setBounds(380,20,80,25);
         frame.add(label);
 
         JLabel label2 = new JLabel("Binary Mantissa and Base-2");
@@ -378,11 +378,12 @@ public class Binary implements ActionListener{
     }
 
     public void temp(){
-        int expInput = -5; // to be deleted
-        Boolean signMantissa = true; // to be deleted
-        int[] mantissa = {1, 0, 1, 1, 1, 0, 1, 0}; // to be deleted
+        //int expInput = -5; // to be deleted
+        //Boolean signMantissa = true; // to be deleted
+        //int[] mantissa = {1, 0, 1, 1, 1, 0, 1, 0}; // to be deleted
 
-        Converter cm = new Converter(mantissa, expInput, signMantissa);
+        Initialization init = new Initialization(str_mantissa, str_exponent, 2);
+        Converter cm = new Converter(init.getAns(), init.getExp(), init.getSign());
         
         System.out.println(cm.getBinaryOutput()); // to be deleted
         System.out.println(cm.getHexOutput()); // to be deleted
