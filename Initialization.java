@@ -113,8 +113,10 @@ public class Initialization {
                     found = true;
                     this.exponent = exponent + decimalPlace;
                 } else {
-                    array[x] = Integer.parseInt(String.valueOf(c));
-                    x++;
+                    if (c == '1' || c == '0') {
+                        array[x] = Integer.parseInt(String.valueOf(c));
+                        x++;
+                    }
                 }
             }
         }
